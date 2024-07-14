@@ -155,4 +155,4 @@ jobs:
         env:
           SERVICE_URL: ${{ env.SERVICE_URL }}
         run: |
-          newman run ./Postman/CollectionShipping.postman_collection.json --env-var linkService=$(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          newman run ./Postman/CollectionShipping.postman_collection.json --env-var linkService=${{ env.SERVICE_URL }}
