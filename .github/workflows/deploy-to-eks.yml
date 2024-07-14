@@ -133,17 +133,26 @@ jobs:
 
       - name: Deploy Load Balancer Service
         run: kubectl apply -f ./shipping-service-svc.yaml
-        
+   
       - name: Get Load Balancer URL
-        id: get-lb-url
+        id: get_url
         run: |
-          echo "Load Balancer URL: $(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" > lb_url.txt
-          cat lb_url.txt
-        
+          echo "Getting the Load Balancer URL..."
+          SERVICE_URL=$(kubectl get svc <your-load-balancer-service-name> -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          echo "SERVICE_URL=${SERVICE_URL}" >> $GITHUB_ENV
+
+  newman:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Run Postman Tests
+      - name: Run Newman tests
+        env:
+          SERVICE_URL: ${{ env.SERVICE_URL }}
         run: |
-          newman run ./postman/your-collection.json -e ./postman/your-environment.json --env-var "baseUrl=$(cat lb_url.txt)"
-
+          newman run postman_collection.json --env-var linkService=${{ env.SERVICE_URL }}
