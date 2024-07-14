@@ -142,5 +142,5 @@ jobs:
         
       - name: Test API Endpoint
         run: |
-          sleep 30
-          curl http://$(echo ${{ steps.get-lb-url.outputs.hostname }})/products
+          sleep 120
+          curl http://$(echo ${{ steps.get-lb-url.outputs.hostname }})/shipping/c
