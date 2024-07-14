@@ -48,13 +48,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{linkService}}/shipping/B",
+					"raw": "{{linkService}}/shipping/C",
 					"host": [
 						"{{linkService}}"
 					],
 					"path": [
 						"shipping",
-						"B"
+						"C"
 					]
 				}
 			},
@@ -66,13 +66,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{linkService}}/shipping/B",
+					"raw": "{{linkService}}/shipping/D",
 					"host": [
 						"{{linkService}}"
 					],
 					"path": [
 						"shipping",
-						"B"
+						"D"
 					]
 				}
 			},
@@ -103,7 +103,7 @@
 	],
 	"variable": [
 		{
-			"key": "linkService\n\n",
+			"key": "linkService",
 			"value": "",
 			"type": "string"
 		}
