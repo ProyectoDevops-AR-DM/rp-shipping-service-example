@@ -139,6 +139,7 @@ jobs:
         run: |
           echo "Getting the Load Balancer URL..."
           SERVICE_URL=$(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+          echo ${SERVICE_URL}
           echo "SERVICE_URL=${SERVICE_URL}" >> $GITHUB_ENV
 
   newman:
