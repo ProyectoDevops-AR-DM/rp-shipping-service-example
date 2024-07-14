@@ -125,7 +125,6 @@ jobs:
           elif [[ ${{ github.ref_name }} == 'develop' ]]; then
             aws eks update-kubeconfig --name eks-proyectodevops-develop --region ${{ secrets.AWS_REGION }}
           fi
-
       - name: Validate deployment YAML
         run: kubectl apply -f ./shipping-service-deployment.yaml --dry-run=client
 
@@ -138,9 +137,13 @@ jobs:
       - name: Get Load Balancer URL
         id: get-lb-url
         run: |
-          kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+          echo "Load Balancer URL: $(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" > lb_url.txt
+          cat lb_url.txt
         
-      - name: Test API Endpoint
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Tests
         run: |
-          sleep 120
-          curl http://$(echo ${{ steps.get-lb-url.outputs.hostname }})/shipping/c
+          newman run ./postman/your-collection.json -e ./postman/your-environment.json --env-var "baseUrl=$(cat lb_url.txt)"
+
