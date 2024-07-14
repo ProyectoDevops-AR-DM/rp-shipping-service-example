@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "7f83be00-7939-4631-a158-5445c07d20f6",
+		"name": "CollectionShipping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19595236"
+	},
+	"item": [
+		{
+			"name": "Ver estado de envío",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{linkService}}/shipping/A",
+					"host": [
+						"{{linkService}}"
+					],
+					"path": [
+						"shipping",
+						"A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver estado de Envio B",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{linkService}}/shipping/B",
+					"host": [
+						"{{linkService}}"
+					],
+					"path": [
+						"shipping",
+						"B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver estado de Envio C",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{linkService}}/shipping/B",
+					"host": [
+						"{{linkService}}"
+					],
+					"path": [
+						"shipping",
+						"B"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver estado de Envio D",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{linkService}}/shipping/B",
+					"host": [
+						"{{linkService}}"
+					],
+					"path": [
+						"shipping",
+						"B"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "linkService\n\n",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
