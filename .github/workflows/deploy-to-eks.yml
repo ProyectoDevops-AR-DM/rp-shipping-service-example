@@ -137,7 +137,7 @@ jobs:
       - name: Get Load Balancer URL
         id: get-lb-url
         run: |
-          echo "Load Balancer URL: $(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" > lb_url.txt
+          echo "$(kubectl get svc shipping-service-service -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')" > lb_url.txt
           cat lb_url.txt
         
       - name: Install Newman
@@ -145,5 +145,5 @@ jobs:
 
       - name: Run Postman Tests
         run: |
-          newman run ./postman/your-collection.json -e ./postman/your-environment.json --env-var "baseUrl=$(cat lb_url.txt)"
+          newman run ./Postman/CollectionShipping.postman_collection.json -e ./Postman/variable.postman_environment.json --env-var "baseUrl=$(cat lb_url.txt)"
 
